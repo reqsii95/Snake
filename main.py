@@ -13,7 +13,7 @@ class SnakeNoirUltimate:
         self.width, self.height = 600, 400
         self.cell = 20
         
-        # Google Pixel / Retro UI Fontları
+       
         self.font_bg = ("ByteBounce", 140, "bold")
         self.font_title = ("ByteBounce", 45, "bold")
         self.font_pixel = ("ByteBounce", 12, "bold")
@@ -105,12 +105,12 @@ class SnakeNoirUltimate:
         color = f'#{v:02x}{v:02x}{v:02x}'
         text_color = "black" if self.hover_alpha > 0.5 else "white"
         
-        # Temiz Buton Çizimi (Sıfır Çizgi Hatası)
+        
         self.canvas.create_oval(x-w/2, y-h/2, x-w/2+h, y+h/2, fill=color, outline="")
         self.canvas.create_oval(x+w/2-h, y-h/2, x+w/2, y+h/2, fill=color, outline="")
         self.canvas.create_rectangle(x-w/2+h/2, y-h/2, x+w/2-h/2, y+h/2, fill=color, outline="")
         
-        # Pasif durumdayken çok ince dış çerçeve
+        
         if self.hover_alpha < 0.1:
             self.canvas.create_arc(x-w/2, y-h/2, x-w/2+h, y+h/2, start=90, extent=180, outline="#444", style="arc")
             self.canvas.create_arc(x+w/2-h, y-h/2, x+w/2, y+h/2, start=270, extent=180, outline="#444", style="arc")
@@ -131,15 +131,15 @@ class SnakeNoirUltimate:
             self.draw_button(300, 245, "Start Game")
             
         elif self.state == "PLAYING":
-            # Arka Plan Dev Skor
+          
             self.canvas.create_text(300, 200, text=f"{self.score}", fill="#080808", font=self.font_bg)
             
-            # ELMA ANİMASYONU: Sadece Renk Değişimi (Nefes Alma Efekti)
+           
             c_val = int(140 + 115 * (0.5 + 0.5 * math.sin(self.food_pulse)))
             f_color = f'#{c_val:02x}{c_val:02x}{c_val:02x}'
             self.canvas.create_oval(self.food[0]+6, self.food[1]+6, self.food[0]+14, self.food[1]+14, fill=f_color, outline="")
             
-            # Yılan
+           
             for i, (x, y) in enumerate(self.snake):
                 c = "white" if i == 0 else f"#{max(25, 160-i*10):02x}{max(25, 160-i*10):02x}{max(25, 160-i*10):02x}"
                 self.canvas.create_oval(x+2, y+2, x+18, y+18, fill=c, outline="")
@@ -152,4 +152,5 @@ class SnakeNoirUltimate:
 if __name__ == "__main__":
     app = tk.Tk()
     SnakeNoirUltimate(app)
+
     app.mainloop()
